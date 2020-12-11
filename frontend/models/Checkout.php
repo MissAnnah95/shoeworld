@@ -2,21 +2,19 @@
 
 namespace frontend\models;
 
-
 use Yii;
 use common\models\User;
+
 /**
  * This is the model class for table "checkout".
  *
  * @property int $checkoutId
  * @property int $userId
- * @property int $shoeId
  * @property string $name
  * @property string $email
  * @property int $phoneNo
  * @property string $location
  *
- * @property Shoes $shoe
  * @property User $user
  */
 class Checkout extends \yii\db\ActiveRecord
@@ -35,10 +33,9 @@ class Checkout extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userId', 'shoeId', 'name', 'email', 'phoneNo', 'location'], 'required'],
-            [['userId', 'shoeId', 'phoneNo'], 'integer'],
+            [['userId', 'name', 'email', 'phoneNo', 'location'], 'required'],
+            [['userId', 'phoneNo'], 'integer'],
             [['name', 'email', 'location'], 'string', 'max' => 200],
-            [['shoeId'], 'exist', 'skipOnError' => true, 'targetClass' => Shoes::className(), 'targetAttribute' => ['shoeId' => 'shoeId']],
             [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'id']],
         ];
     }
@@ -51,22 +48,11 @@ class Checkout extends \yii\db\ActiveRecord
         return [
             'checkoutId' => 'Checkout ID',
             'userId' => 'User ID',
-            'shoeId' => 'Shoe ID',
             'name' => 'Name',
             'email' => 'Email',
             'phoneNo' => 'Phone No',
             'location' => 'Location',
         ];
-    }
-
-    /**
-     * Gets query for [[Shoe]].
-     *
-     * @return \yii\db\ActiveQuery|ShoesQuery
-     */
-    public function getShoe()
-    {
-        return $this->hasOne(Shoes::className(), ['shoeId' => 'shoeId']);
     }
 
     /**

@@ -14,9 +14,7 @@ $userId = user::find()->where(['id'=>Yii::$app->user->id])->one();
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'userId')->hiddenInput(['value' => $userId->id, 'readonly'=>true])->label(false)  ?>
-
-    <?= $form->field($model, 'shoeId')->textInput() ?>
+    <?= $form->field($model, 'userId')->hiddenInput(['value' => $userId->id, 'readonly'=>true])->label(false)  ?>  
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

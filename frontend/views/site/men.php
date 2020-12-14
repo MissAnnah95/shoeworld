@@ -54,7 +54,6 @@ $listings = Shoes::find()->where(['categoryId' =>10])->joinWith('shoeimage')->al
   <?php } ?>
   </div>
 
-
 </div>
 <?php
 
